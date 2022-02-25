@@ -1,3 +1,3 @@
 locals {
-  service_url = "${var.env}-${replace(var.app_name, "_", "-")}.${var.domain}"
+  service_url = "${var.subdomain}.${var.domain}"
 }
