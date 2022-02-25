@@ -12,3 +12,8 @@ data "aws_vpc" "vpc" {
     values = [var.vpc_name]
   }
 }
+
+data "aws_lb_listener" "listener_rule_on_443" {
+  load_balancer_arn = data.aws_lb.lb.arn
+  port              = 443
+}

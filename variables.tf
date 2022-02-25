@@ -113,3 +113,7 @@ variable "target_group_unhealthy_threshold" {
 variable "vpc_name" {
   type = string
 }
+variable "env" {
+  type    = string
+  default = ""
+}
