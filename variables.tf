@@ -17,6 +17,11 @@ variable "application_load_balancer_name" {
   type        = string
   description = "application load balancer name"
 }
+
+variable "application_load_rule_priority" {
+  type    = number
+  default = null
+}
 variable "task_compatibilities" {
   type    = set(string)
   default = ["EC2"]

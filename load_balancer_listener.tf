@@ -1,5 +1,6 @@
 resource "aws_lb_listener_rule" "listener_rule" {
   listener_arn = data.aws_lb_listener.listener_rule_on_443.arn
+  priority     = var.application_load_rule_priority
   action {
     type             = "forward"
     target_group_arn = aws_lb_target_group.service_tg.arn
