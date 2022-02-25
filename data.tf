@@ -7,5 +7,8 @@ data "aws_route53_zone" "zone" {
 }
 
 data "aws_vpc" "vpc" {
-  name = var.domain
+  filter {
+    name   = "tag:Name"
+    values = [var.vpc_name]
+  }
 }
