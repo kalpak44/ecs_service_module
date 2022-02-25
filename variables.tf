@@ -51,7 +51,7 @@ variable "service_execution_role" {
   default     = null
 }
 variable "container_memory_reservation" {
-  type    = string
+  type    = number
   default = 256
 }
 variable "cloud_watch_logs_group" {
