@@ -26,7 +26,12 @@ resource "aws_ecs_service" "service" {
   }
 
   load_balancer {
-    target_group_arn = aws_lb_target_group.service_target_group.arn
+    target_group_arn = aws_lb_target_group.public_target_group.arn
+    container_name   = var.app_name
+    container_port   = var.container_port
+  }
+  load_balancer {
+    target_group_arn = aws_lb_target_group.private_target_group.arn
     container_name   = var.app_name
     container_port   = var.container_port
   }

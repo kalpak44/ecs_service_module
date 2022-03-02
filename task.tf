@@ -25,7 +25,7 @@ resource "aws_ecs_task_definition" "task_definition" {
         {
           containerPort = var.container_port
           hostPort      = 0
-          protocol      = "HTTP"
+          protocol      = "tcp"
         }
       ]
     }
