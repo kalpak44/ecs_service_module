@@ -11,11 +11,11 @@ variable "image_tag" {
   type = string
 }
 variable "public_domain" {
-  default = "example.com"
+  default = null
 }
 
 variable "private_domain" {
-  default = "local"
+  default = null
 }
 
 variable "public_load_balancer_name" {
