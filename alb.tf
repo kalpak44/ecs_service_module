@@ -12,7 +12,7 @@ resource "aws_lb_listener_rule" "public_listener_rule" {
   }
 
   dynamic "condition" {
-    for_each = var.private_domain == null ? [] : [1]
+    for_each = var.public_domain == null ? [] : [1]
     content {
       host_header {
         values = ["${var.subdomain}.${var.public_domain}"]
