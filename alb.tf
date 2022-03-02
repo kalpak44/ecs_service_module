@@ -1,6 +1,6 @@
 resource "aws_lb_listener_rule" "public_listener_rule" {
   count        = var.public_load_balancer_name == null ? 0 : 1
-  listener_arn = data.aws_lb_listener.listener_rule_on_public_lb_443.arn
+  listener_arn = data.aws_lb_listener.listener_rule_on_public_lb_443[0].arn
   priority     = var.load_rule_priority
 
   dynamic "action" {
@@ -27,7 +27,7 @@ resource "aws_lb_listener_rule" "public_listener_rule" {
 
 resource "aws_lb_listener_rule" "private_listener_rule" {
   count        = var.private_load_balancer_name == null ? 0 : 1
-  listener_arn = data.aws_lb_listener.listener_rule_on_private_lb_80.arn
+  listener_arn = data.aws_lb_listener.listener_rule_on_private_lb_80[0].arn
   priority     = var.load_rule_priority
 
   dynamic "action" {
