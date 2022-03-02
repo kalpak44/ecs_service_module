@@ -33,6 +33,7 @@ resource "aws_ecs_service" "service" {
       container_port   = var.container_port
     }
   }
+
   dynamic "load_balancer" {
     for_each = var.private_load_balancer_name == null ? [] : [1]
     content {
