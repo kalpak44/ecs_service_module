@@ -26,12 +26,14 @@ resource "aws_ecs_service" "service" {
   }
 
   load_balancer {
+    count            = var.public_load_balancer_name == null ? 1 : 0
     target_group_arn = aws_lb_target_group.public_lb_target_group.arn
     container_name   = var.app_name
     container_port   = var.container_port
   }
 
   load_balancer {
+    count            = var.private_load_balancer_name == null ? 1 : 0
     target_group_arn = aws_lb_target_group.private_lb_target_group.arn
     container_name   = var.app_name
     container_port   = var.container_port
