@@ -26,16 +26,24 @@ resource "aws_ecs_service" "service" {
   }
 
   load_balancer {
-    target_group_arn = aws_lb_target_group.target_group.arn
+    target_group_arn = aws_lb_target_group.public_lb_target_group.arn
     container_name   = var.app_name
     container_port   = var.container_port
   }
+
+  load_balancer {
+    target_group_arn = aws_lb_target_group.private_lb_target_group.arn
+    container_name   = var.app_name
+    container_port   = var.container_port
+  }
+
 
   lifecycle {
     create_before_destroy = true
   }
 
   depends_on = [
-    aws_lb_listener_rule.public_listener_rule, aws_ecs_task_definition.task_definition
+    aws_lb_listener_rule.public_listener_rule, aws_lb_listener_rule.private_listener_rule,
+    aws_ecs_task_definition.task_definition
   ]
 }
