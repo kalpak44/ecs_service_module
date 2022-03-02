@@ -34,7 +34,7 @@ resource "aws_ecs_service" "service" {
     }
   }
   dynamic "load_balancer" {
-    for_each = var.public_load_balancer_name == null ? [] : [1]
+    for_each = var.private_load_balancer_name == null ? [] : [1]
     content {
       target_group_arn = aws_lb_target_group.private_lb_target_group.arn
       container_name   = var.app_name
