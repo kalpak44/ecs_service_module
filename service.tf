@@ -25,20 +25,22 @@ resource "aws_ecs_service" "service" {
     rollback = true
   }
 
-  load_balancer {
-    count            = var.public_load_balancer_name == null ? 0 : 1
-    target_group_arn = aws_lb_target_group.public_lb_target_group.arn
-    container_name   = var.app_name
-    container_port   = var.container_port
+  dynamic "load_balancer" {
+    for_each = var.public_load_balancer_name == null ? [] : [1]
+    content {
+      target_group_arn = aws_lb_target_group.public_lb_target_group.arn
+      container_name   = var.app_name
+      container_port   = var.container_port
+    }
   }
-
-  load_balancer {
-    count            = var.private_load_balancer_name == null ? 0 : 1
-    target_group_arn = aws_lb_target_group.private_lb_target_group.arn
-    container_name   = var.app_name
-    container_port   = var.container_port
+  dynamic "load_balancer" {
+    for_each = var.public_load_balancer_name == null ? [] : [1]
+    content {
+      target_group_arn = aws_lb_target_group.private_lb_target_group.arn
+      container_name   = var.app_name
+      container_port   = var.container_port
+    }
   }
-
 
   lifecycle {
     create_before_destroy = true
