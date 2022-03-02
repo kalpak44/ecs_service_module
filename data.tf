@@ -10,10 +10,12 @@ data "aws_lb" "private_lb" {
 
 
 data "aws_route53_zone" "public_zone" {
-  name = var.public_domain
+  count = var.public_domain == null ? 0 : 1
+  name  = var.public_domain
 }
 
 data "aws_route53_zone" "private_zone" {
+  count        = var.private_domain == null ? 0 : 1
   private_zone = true
   name         = var.private_domain
 }

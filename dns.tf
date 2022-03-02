@@ -1,6 +1,6 @@
 resource "aws_route53_record" "public" {
   count   = var.public_load_balancer_name == null ? 0 : 1
-  zone_id = data.aws_route53_zone.public_zone.id
+  zone_id = data.aws_route53_zone.public_zone[0].id
   name    = local.service_public_url
   type    = "A"
   alias {
@@ -11,7 +11,7 @@ resource "aws_route53_record" "public" {
 }
 resource "aws_route53_record" "private" {
   count   = var.private_load_balancer_name == null ? 0 : 1
-  zone_id = data.aws_route53_zone.private_zone.id
+  zone_id = data.aws_route53_zone.private_zone[0].id
   name    = local.service_private_url
   type    = "A"
   alias {
