@@ -15,17 +15,17 @@ variable "public_domain" {
 }
 
 variable "private_domain" {
-  default = "local.dev"
+  default = "dev.local"
 }
 
 variable "public_load_balancer_name" {
   type        = string
-  description = "public load balancer name"
+  description = "public app load balancer name"
 }
 
 variable "private_load_balancer_name" {
   type        = string
-  description = "public load balancer name"
+  description = "private app load balancer name"
 }
 
 variable "load_rule_priority" {

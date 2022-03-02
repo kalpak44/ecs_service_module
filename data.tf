@@ -12,7 +12,8 @@ data "aws_route53_zone" "public_zone" {
 }
 
 data "aws_route53_zone" "private_zone" {
-  name = var.private_domain
+  private_zone = true
+  name         = var.private_domain
 }
 
 data "aws_vpc" "vpc" {
