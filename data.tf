@@ -1,9 +1,11 @@
 data "aws_lb" "public_lb" {
-  name = var.public_load_balancer_name
+  count = var.public_load_balancer_name == null ? 0 : 1
+  name  = var.public_load_balancer_name
 }
 
 data "aws_lb" "private_lb" {
-  name = var.private_load_balancer_name
+  count = var.private_load_balancer_name == null ? 0 : 1
+  name  = var.private_load_balancer_name
 }
 
 
