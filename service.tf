@@ -28,7 +28,7 @@ resource "aws_ecs_service" "service" {
   dynamic "load_balancer" {
     for_each = var.public_load_balancer_name == null ? [] : [1]
     content {
-      target_group_arn = aws_lb_target_group.public_lb_target_group.arn
+      target_group_arn = aws_lb_target_group.public_lb_target_group[0].arn
       container_name   = var.app_name
       container_port   = var.container_port
     }
@@ -36,7 +36,7 @@ resource "aws_ecs_service" "service" {
   dynamic "load_balancer" {
     for_each = var.private_load_balancer_name == null ? [] : [1]
     content {
-      target_group_arn = aws_lb_target_group.private_lb_target_group.arn
+      target_group_arn = aws_lb_target_group.private_lb_target_group[0].arn
       container_name   = var.app_name
       container_port   = var.container_port
     }

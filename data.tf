@@ -26,11 +26,11 @@ data "aws_vpc" "vpc" {
 }
 
 data "aws_lb_listener" "listener_rule_on_public_lb_443" {
-  load_balancer_arn = data.aws_lb.public_lb.arn
+  load_balancer_arn = data.aws_lb.public_lb[0].arn
   port              = 443
 }
 
 data "aws_lb_listener" "listener_rule_on_private_lb_80" {
-  load_balancer_arn = data.aws_lb.private_lb.arn
+  load_balancer_arn = data.aws_lb.private_lb[0].arn
   port              = 80
 }

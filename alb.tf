@@ -7,7 +7,7 @@ resource "aws_lb_listener_rule" "public_listener_rule" {
     for_each = var.public_load_balancer_name == null ? [] : [1]
     content {
       type             = "forward"
-      target_group_arn = aws_lb_target_group.public_lb_target_group.arn
+      target_group_arn = aws_lb_target_group.public_lb_target_group[0].arn
     }
   }
 
@@ -21,7 +21,7 @@ resource "aws_lb_listener_rule" "public_listener_rule" {
     create_before_destroy = true
   }
   depends_on = [
-    aws_lb_target_group.public_lb_target_group
+    aws_lb_target_group.public_lb_target_group[0]
   ]
 }
 
@@ -34,7 +34,7 @@ resource "aws_lb_listener_rule" "private_listener_rule" {
     for_each = var.private_load_balancer_name == null ? [] : [1]
     content {
       type             = "forward"
-      target_group_arn = aws_lb_target_group.private_lb_target_group.arn
+      target_group_arn = aws_lb_target_group.private_lb_target_group[0].arn
     }
   }
 
@@ -48,6 +48,6 @@ resource "aws_lb_listener_rule" "private_listener_rule" {
     create_before_destroy = true
   }
   depends_on = [
-    aws_lb_target_group.private_lb_target_group
+    aws_lb_target_group.private_lb_target_group[0]
   ]
 }
