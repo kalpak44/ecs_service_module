@@ -29,6 +29,6 @@ data "aws_lb_listener" "listener_rule_on_public_lb_443" {
 }
 
 data "aws_lb_listener" "listener_rule_on_private_lb_80" {
-  load_balancer_arn = data.aws_lb.public_lb.arn
+  load_balancer_arn = data.aws_lb.private_lb.arn
   port              = 80
 }
