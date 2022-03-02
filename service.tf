@@ -26,7 +26,7 @@ resource "aws_ecs_service" "service" {
   }
 
   load_balancer {
-    target_group_arn = aws_lb_target_group.service_tg.arn
+    target_group_arn = aws_lb_target_group.service_target_group.arn
     container_name   = var.app_name
     container_port   = var.container_port
   }
@@ -36,6 +36,6 @@ resource "aws_ecs_service" "service" {
   }
 
   depends_on = [
-    aws_lb_listener_rule.listener_rule, aws_ecs_task_definition.task_definition
+    aws_lb_listener_rule.public_listener_rule, aws_ecs_task_definition.task_definition
   ]
 }

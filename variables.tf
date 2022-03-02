@@ -10,15 +10,25 @@ variable "docker_registry" {
 variable "image_tag" {
   type = string
 }
-variable "domain" {
+variable "public_domain" {
   default = "example.com"
 }
-variable "application_load_balancer_name" {
-  type        = string
-  description = "application load balancer name"
+
+variable "private_domain" {
+  default = "local.dev"
 }
 
-variable "application_load_rule_priority" {
+variable "public_load_balancer_name" {
+  type        = string
+  description = "public load balancer name"
+}
+
+variable "private_load_balancer_name" {
+  type        = string
+  description = "public load balancer name"
+}
+
+variable "load_rule_priority" {
   type    = number
   default = null
 }

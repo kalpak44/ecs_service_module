@@ -1,4 +1,4 @@
-resource "aws_lb_target_group" "service_tg" {
+resource "aws_lb_target_group" "service_target_group" {
   name        = replace(var.app_name, "_", "-")
   port        = var.container_port
   protocol    = "HTTP"
