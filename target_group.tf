@@ -1,5 +1,4 @@
 resource "aws_lb_target_group" "public_lb_target_group" {
-  count       = var.public_load_balancer_name == null ? 0 : 1
   name        = "${replace(var.app_name, "_", "-")}-public"
   port        = var.container_port
   protocol    = "HTTP"
@@ -30,7 +29,6 @@ resource "aws_lb_target_group" "public_lb_target_group" {
 }
 
 resource "aws_lb_target_group" "private_lb_target_group" {
-  count       = var.private_load_balancer_name == null ? 0 : 1
   name        = "${replace(var.app_name, "_", "-")}-private"
   port        = var.container_port
   protocol    = "HTTP"
