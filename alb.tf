@@ -11,9 +11,12 @@ resource "aws_lb_listener_rule" "public_listener_rule" {
     }
   }
 
-  condition {
-    host_header {
-      values = [local.service_public_url]
+  dynamic "condition" {
+    for_each = var.private_domain == null ? [] : [1]
+    content {
+      host_header {
+        values = ["${var.subdomain}.${var.public_domain}"]
+      }
     }
   }
 
@@ -37,10 +40,12 @@ resource "aws_lb_listener_rule" "private_listener_rule" {
       target_group_arn = aws_lb_target_group.private_lb_target_group[0].arn
     }
   }
-
-  condition {
-    host_header {
-      values = [local.service_private_url]
+  dynamic "condition" {
+    for_each = var.private_domain == null ? [] : [1]
+    content {
+      host_header {
+        values = ["${var.subdomain}.${var.private_domain}"]
+      }
     }
   }
 
