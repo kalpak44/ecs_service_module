@@ -30,11 +30,6 @@ resource "aws_ecs_service" "service" {
     container_name   = var.app_name
     container_port   = var.container_port
   }
-  load_balancer {
-    target_group_arn = aws_lb_target_group.private_target_group.arn
-    container_name   = var.app_name
-    container_port   = var.container_port
-  }
 
   lifecycle {
     create_before_destroy = true
