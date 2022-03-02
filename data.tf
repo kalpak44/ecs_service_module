@@ -3,7 +3,7 @@ data "aws_lb" "public_lb" {
 }
 
 data "aws_lb" "private_lb" {
-  name = var.public_load_balancer_name
+  name = var.private_load_balancer_name
 }
 
 
