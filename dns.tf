@@ -1,7 +1,7 @@
 resource "aws_route53_record" "public" {
   count   = var.public_load_balancer_name == null && var.subdomain == null && var.public_domain ? 0 : 1
   zone_id = data.aws_route53_zone.public_zone[0].id
-  name    = "${var.subdomain}.${var.public_domain[0]}"
+  name    = "${var.subdomain}.${var.public_domain}"
   type    = "A"
   alias {
     name                   = data.aws_lb.public_lb[0].dns_name
@@ -12,7 +12,7 @@ resource "aws_route53_record" "public" {
 resource "aws_route53_record" "private" {
   count   = var.private_load_balancer_name == null && var.subdomain == null && var.private_domain ? 0 : 1
   zone_id = data.aws_route53_zone.private_zone[0].id
-  name    = "${var.subdomain}.${var.public_domain[0]}"
+  name    = "${var.subdomain}.${var.private_domain}"
   type    = "A"
   alias {
     name                   = data.aws_lb.private_lb[0].dns_name
