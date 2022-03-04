@@ -4,9 +4,9 @@ resource "aws_ecs_service" "service" {
   cluster             = var.cluster_name
   scheduling_strategy = var.service_scheduling_strategy
 
-  iam_role      = var.service_execution_role
-  desired_count = var.desired_tasks_count
-
+  iam_role                           = var.service_execution_role
+  desired_count                      = var.desired_tasks_count
+  enable_execute_command             = true
   deployment_maximum_percent         = var.service_deployment_maximum_percent
   deployment_minimum_healthy_percent = var.service_deployment_minimum_healthy_percent
   health_check_grace_period_seconds  = var.service_health_check_grace_period_seconds
