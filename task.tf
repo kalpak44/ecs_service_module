@@ -12,7 +12,8 @@ resource "aws_ecs_task_definition" "task_definition" {
       linuxParameters   = {
         initProcessEnabled = true
       }
-      essential = true
+      enableExecuteCommand = true
+      essential            = true
       logConfiguration : {
         logDriver : "awslogs"
         options : {
