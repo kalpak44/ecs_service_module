@@ -49,6 +49,7 @@ resource "aws_ecs_service" "service" {
 
   depends_on = [
     aws_lb_listener_rule.public_listener_rule, aws_lb_listener_rule.private_listener_rule,
-    aws_ecs_task_definition.task_definition
+    aws_ecs_task_definition.task_definition, aws_lb_target_group.private_lb_target_group,
+    aws_lb_target_group.public_lb_target_group
   ]
 }
