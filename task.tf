@@ -9,7 +9,10 @@ resource "aws_ecs_task_definition" "task_definition" {
       cpu               = var.container_cpu
       memory            = var.container_memory
       memoryReservation = var.container_memory_reservation
-      essential         = true
+      linuxParameters   = {
+        initProcessEnabled = true
+      }
+      essential = true
       logConfiguration : {
         logDriver : "awslogs"
         options : {
