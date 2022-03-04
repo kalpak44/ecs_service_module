@@ -142,12 +142,12 @@ variable "target_group_healthy_threshold" {
 
 variable "target_group_health_check_interval" {
   type    = number
-  default = 10
+  default = 30
 }
 
 variable "target_group_health_check_timeout" {
   type    = number
-  default = 5
+  default = 10
 }
 
 variable "target_group_unhealthy_threshold" {
