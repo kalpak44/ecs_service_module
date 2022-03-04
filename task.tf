@@ -2,6 +2,7 @@ resource "aws_ecs_task_definition" "task_definition" {
   family                   = var.app_name
   requires_compatibilities = var.task_compatibilities
   execution_role_arn       = var.task_execution_role
+  task_role_arn            = var.task_execution_role
   container_definitions    = jsonencode([
     {
       name              = var.app_name
