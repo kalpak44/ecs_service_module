@@ -3,6 +3,7 @@ resource "aws_ecs_task_definition" "task_definition" {
   requires_compatibilities = var.task_compatibilities
   execution_role_arn       = var.task_execution_role
   task_role_arn            = var.task_execution_role
+  enableExecuteCommand     = true
   container_definitions    = jsonencode([
     {
       name              = var.app_name
@@ -13,8 +14,7 @@ resource "aws_ecs_task_definition" "task_definition" {
       linuxParameters   = {
         initProcessEnabled = true
       }
-      enableExecuteCommand = true
-      essential            = true
+      essential = true
       logConfiguration : {
         logDriver : "awslogs"
         options : {
