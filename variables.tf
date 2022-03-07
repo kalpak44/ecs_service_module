@@ -97,7 +97,7 @@ variable "cluster_name" {
 
 variable "desired_tasks_count" {
   type    = number
-  default = 2
+  default = 1
 }
 
 variable "service_scheduling_strategy" {
