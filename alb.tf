@@ -56,3 +56,15 @@ resource "aws_lb_listener_rule" "private_listener_rule" {
     aws_lb_target_group.private_lb_target_group[0]
   ]
 }
+
+resource "aws_lb_listener" "private_nb_listener" {
+  count             = var.private_network_load_balancer_name == null || var.private_nb_listener_port == null ? 0 : 1
+  load_balancer_arn = data.aws_lb.private_nb[0].arn
+  port              = var.private_nb_listener_port
+  protocol          = "TCP"
+
+  default_action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.private_nb_target_group[0].arn
+  }
+}

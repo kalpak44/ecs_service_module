@@ -15,6 +15,9 @@ data "aws_lb" "private_lb" {
   name  = var.private_load_balancer_name
 }
 
+data "aws_lb" "private_nb" {
+  name = var.private_network_load_balancer_name
+}
 
 data "aws_route53_zone" "public_zone" {
   count = var.public_domain == null ? 0 : 1

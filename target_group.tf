@@ -51,3 +51,16 @@ resource "aws_lb_target_group" "private_lb_target_group" {
     create_before_destroy = true
   }
 }
+
+resource "aws_lb_target_group" "private_nb_target_group" {
+  count       = var.private_network_load_balancer_name == null ? 0 : 1
+  name        = "${replace(var.app_name, "_", "-")}-nb-private"
+  port        = var.container_port
+  protocol    = "TCP"
+  target_type = "instance"
+  vpc_id      = data.aws_vpc.vpc.id
+
+  lifecycle {
+    create_before_destroy = true
+  }
+}

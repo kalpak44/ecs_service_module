@@ -43,6 +43,15 @@ resource "aws_ecs_service" "service" {
     }
   }
 
+  dynamic "load_balancer" {
+    for_each = var.private_network_load_balancer_name == null ? [] : [1]
+    content {
+      target_group_arn = aws_lb_target_group.private_nb_target_group[0].arn
+      container_name   = var.app_name
+      container_port   = var.container_port
+    }
+  }
+
   lifecycle {
     create_before_destroy = true
   }
