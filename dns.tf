@@ -26,3 +26,19 @@ resource "aws_route53_record" "private" {
     }
   }
 }
+
+resource "aws_route53_record" "private_nb" {
+  count   = var.private_network_load_balancer_name == null || var.subdomain == null || var.private_domain == null ? 0 : 1
+  zone_id = data.aws_route53_zone.private_zone[0].id
+  name    = "${var.subdomain}.${var.private_domain}"
+  type    = "A"
+  dynamic "alias" {
+    for_each = var.private_network_load_balancer_name == null ? [] : [1]
+    content {
+      name                   = data.aws_lb.private_nb[0].dns_name
+      zone_id                = data.aws_lb.private_nb[0].zone_id
+      evaluate_target_health = true
+    }
+  }
+}
+
