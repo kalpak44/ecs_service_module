@@ -37,6 +37,7 @@ variable "private_load_balancer_name" {
 variable "private_network_load_balancer_name" {
   type        = string
   description = "private network app load balancer name"
+  default     = null
 }
 variable "private_nb_listener_port" {
   type    = number
